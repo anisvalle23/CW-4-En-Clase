@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,22 +14,22 @@ public class TestMiFile {
                 System.out.println("\n==============================");
                 System.out.println("         MENU PRINCIPAL       ");
                 System.out.println("==============================");
-                System.out.println("1. Set el archivo / folder. ");
-                System.out.println("2. Ver información");
-                System.out.println("3. Crear un archivo");
-                System.out.println("4. Crear un folder");
-                System.out.println("5. Borrar");
-                System.out.println("6. cmd - DIR");
-                System.out.println("7. Tree");
-                System.out.println("8. Escribir en el archivo (reemplazar)");
-                System.out.println("9. Escribir en el archivo (añadir)");
-                System.out.println("10. Leer archivo");
-                System.out.println("11. Salir");
+                System.out.println("1. 📁 Set el archivo / folder");
+                System.out.println("2. ℹ️Ver información");
+                System.out.println("3. 📄 Crear un archivo");
+                System.out.println("4. 📂 Crear un folder");
+                System.out.println("5. 🗑️  Borrar");
+                System.out.println("6. 🖥️  cmd - DIR");
+                System.out.println("7. 🌳 Tree");
+                System.out.println("8. ✏️  Escribir en el archivo (reemplazar)");
+                System.out.println("9. ➕ Escribir en el archivo (añadir)");
+                System.out.println("10. 📖 Leer archivo");
+                System.out.println("11. ❌ Salir");
                 System.out.println("==============================");
                 System.out.print("Seleccione una opción: ");
 
                 opcion = read.nextInt();
-                System.out.println();
+                System.out.println();  
 
                 switch (opcion) {
                     case 1:
@@ -57,10 +56,16 @@ public class TestMiFile {
                     case 8:
                         escribirReemplazar();
                         break;
+                    case 9:
+                        escribirAñadir();
+                        break;
+                    case 10:
+                        mf.leerArchivo();
+                        break;
                 }
 
             } catch (InputMismatchException e) {
-                read.nextLine();
+                read.nextLine();  
                 System.out.println("\n** Error: Por favor ingrese una opción válida. **\n");
             } catch (NullPointerException e) {
                 System.out.println("\n** Error: Debes seleccionar la opción 1 al menos una vez. **\n");
@@ -82,10 +87,18 @@ public class TestMiFile {
     private static void escribirReemplazar() throws IOException {
         System.out.println("-------------------------------");
         System.out.println("Escribe el texto que quieres reemplazar en el archivo:");
-        read.nextLine();
+        read.nextLine();  
         String texto = read.nextLine();
         mf.escribirArchivo(texto, false);
         System.out.println("-------------------------------");
     }
 
+    private static void escribirAñadir() throws IOException {
+        System.out.println("-------------------------------");
+        System.out.println("Escribe el texto que quieres añadir al archivo:");
+        read.nextLine();  
+        String texto = read.nextLine();
+        mf.escribirArchivo(texto, true);
+        System.out.println("-------------------------------");
+    }
 }

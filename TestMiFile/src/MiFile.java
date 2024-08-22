@@ -1,5 +1,6 @@
-
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -95,7 +96,7 @@ public class MiFile {
         }
     }
 
-    public void tree() {
+    public void tree(){
         tree(mf, "-");
     }
 
@@ -114,7 +115,7 @@ public class MiFile {
         if (mf != null && mf.isFile()) {
             try (FileWriter writer = new FileWriter(mf, anadir)) {
                 if (anadir && mf.length() > 0) {
-                    writer.write(System.lineSeparator());
+                    writer.write(System.lineSeparator()); 
                 }
                 writer.write(texto);
                 System.out.println("Texto escrito exitosamente.");
@@ -124,4 +125,16 @@ public class MiFile {
         }
     }
 
+    public void leerArchivo() throws IOException {
+        if (mf != null && mf.isFile()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(mf))) {
+                String linea;
+                while ((linea = reader.readLine()) != null) {
+                    System.out.println(linea);
+                }
+            }
+        } else {
+            System.out.println("Debes seleccionar un archivo válido.");
+        }
+    }
 }
