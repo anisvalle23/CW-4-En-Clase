@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
@@ -93,9 +94,11 @@ public class MiFile {
             System.out.println(cfiles + "archivos\t" + tbytes + "bytes" + "\n" + cdirs + "dirs");
         }
     }
-    public void tree(){
+
+    public void tree() {
         tree(mf, "-");
     }
+
     private void tree(File dir, String tab) {
         if (dir.isDirectory()) {
             System.out.println(tab + dir.getName());
@@ -106,4 +109,19 @@ public class MiFile {
             }
         }
     }
+
+    public void escribirArchivo(String texto, boolean anadir) throws IOException {
+        if (mf != null && mf.isFile()) {
+            try (FileWriter writer = new FileWriter(mf, anadir)) {
+                if (anadir && mf.length() > 0) {
+                    writer.write(System.lineSeparator());
+                }
+                writer.write(texto);
+                System.out.println("Texto escrito exitosamente.");
+            }
+        } else {
+            System.out.println("Debes seleccionar un archivo válido.");
+        }
+    }
+
 }
